@@ -15,7 +15,7 @@ async function getRandomUser() {
   const user = data.results[0];
   const newUser = {
     name: `${user.name.first} ${user.name.last}`,
-    money: generateMoney(),
+    money: Math.floor(Math.random() * 1500000),
   };
   addData(newUser);
 }
@@ -23,19 +23,14 @@ async function getRandomUser() {
 // Add new data to object
 function addData(obj) {
   data.push(obj);
-  
+
   // Update the DOM after every add
   updateDOM();
 }
 
 // Generate number as currency
-function generateMoney() {
-  return (
-    '$' +
-    Math.floor(Math.random() * 1500000)
-      .toFixed(2)
-      .replace(/\d(?=(\d{3})+\.)/g, '$&,')
-  );
+function generateMoney(money) {
+  return '$' + money.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 }
 
 // Update DOM with new users
@@ -46,10 +41,20 @@ function updateDOM(providedData = data) {
   providedData.forEach((item) => {
     const element = document.createElement('div');
     element.classList.add('person');
-    element.innerHTML = `<strong>${item.name}</strong> ${item.money}`;
+    element.innerHTML = `<strong>${item.name}</strong> ${generateMoney(item.money)}`;
     main.appendChild(element);
   });
 }
 
+// Double money
+function doubleMoney() {
+  data = data.map((user) => {
+    return { ...user, money: user.money * 2 };
+  });
+  updateDOM();
+}
+
 // Add new users at every click
 addUserBtn.addEventListener('click', getRandomUser);
+// Double the money
+doubleBtn.addEventListener('click', doubleMoney);
