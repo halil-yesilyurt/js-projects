@@ -49,8 +49,9 @@ button {
 button span {
   color: #fff;
   font-weight: bold;
-  font-size: 14px;
+  font-size: clamp(12px, 1.4vw, 14px);
   z-index: 10;
+  word-break: break-word;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-family: 'Open Sans', sans-serif;
@@ -118,9 +119,8 @@ button:hover .btn-effect {
   width: calc(var(--btn-width) * 2);
   height: calc(var(--btn-height) * 2);
 }
-button:hover span{
+button:hover span {
   text-shadow: 2px 2px 2px #292929;
-  
 }
 
 #main {
@@ -144,7 +144,6 @@ h2 {
   margin-bottom: 20px;
   color: #f5f5f5;
   font-weight: 500;
-
 }
 h3 {
   background-color: #fff;
@@ -154,12 +153,14 @@ h3 {
   justify-content: space-between;
   font-weight: 300;
   margin-top: 20px;
+  font-size: clamp(18px, 2.4vw, 24px);
 }
 .person {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-  font-size: 20px;
+  font-size: clamp(17px, 2vw, 20px);
   font-family: 'Calligraffitti', cursive;
-    font-weight: 500;
+  font-weight: 500;
 }
+/* QUERIES */
