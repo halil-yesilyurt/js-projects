@@ -13,3 +13,22 @@ async function getPosts() {
   return data;
 }
 
+// Show data in the DOM
+async function showPosts() {
+  const posts = await getPosts();
+
+  posts.forEach((post) => {
+    const postEl = document.createElement('div');
+    postEl.classList.add('post');
+    postEl.innerHTML = `
+        <div class="number">${post.id}</div>
+            <article class="post-feed">
+            <h2 class="post-title">${post.title}</h2>
+            <p class="post-content">${post.body}</p>
+        </article>
+    `;
+    postBox.appendChild(postEl)
+  });
+}
+
+showPosts();
