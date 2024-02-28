@@ -2,7 +2,7 @@ const postBox = document.querySelector('.post-box');
 const loader = document.querySelector('.loader');
 const filter = document.getElementById('filter');
 
-let postLimit = 3;
+let postLimit = 5;
 let page = 1;
 
 // Fetch the data from the fake api
