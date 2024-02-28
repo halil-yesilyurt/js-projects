@@ -26,6 +26,22 @@ function showLoading() {
   }, 1000);
 }
 
+// Filter post by checking titles and feeds
+function filterPost(e) {
+  const term = e.target.value.toLowerCase();
+  const posts = document.querySelectorAll('.post');
+  
+  posts.forEach((post) => {
+    const postTitle = post.querySelector('.post-title').innerText.toLowerCase();
+    const postFeed = post.querySelector('.post-content').innerText.toLowerCase();
+    if (postTitle.indexOf(term) > -1 || postFeed.indexOf(term) > -1) {
+      post.style.display = 'flex';
+    } else {
+      post.style.display = 'none';
+    }
+  });
+}
+
 // Show data in the DOM
 async function showPosts() {
   const posts = await getPosts();
@@ -51,3 +67,5 @@ window.addEventListener('scroll', () => {
     showLoading();
   }
 });
+
+filter.addEventListener('input', filterPost);
