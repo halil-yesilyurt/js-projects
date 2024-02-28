@@ -8,7 +8,6 @@ let page = 1;
 // Fetch the data from the fake api
 async function getPosts() {
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=${postLimit}&_page=${page}`);
-
   const data = await res.json();
   return data;
 }
@@ -22,7 +21,7 @@ function showLoading() {
       console.log(page);
       page++;
       showPosts();
-    }, 1000);
+    }, 400);
   }, 1000);
 }
 
