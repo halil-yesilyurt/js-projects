@@ -13,10 +13,22 @@ async function getPosts() {
   return data;
 }
 
+// Show loader animation and fetch more posts
+function showLoading() {
+  loader.classList.add('active');
+  setTimeout(() => {
+    loader.classList.remove('active');
+    setTimeout(() => {
+      console.log(page);
+      page++;
+      showPosts();
+    }, 1000);
+  }, 1000);
+}
+
 // Show data in the DOM
 async function showPosts() {
   const posts = await getPosts();
-
   posts.forEach((post) => {
     const postEl = document.createElement('div');
     postEl.classList.add('post');
@@ -27,8 +39,15 @@ async function showPosts() {
             <p class="post-content">${post.body}</p>
         </article>
     `;
-    postBox.appendChild(postEl)
+    postBox.appendChild(postEl);
   });
 }
 
 showPosts();
+
+window.addEventListener('scroll', () => {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+  if (scrollTop + clientHeight >= scrollHeight - 5) {
+    showLoading();
+  }
+});

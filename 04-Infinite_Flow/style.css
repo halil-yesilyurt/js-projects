@@ -67,7 +67,7 @@ input#filter {
   font-weight: 600;
 }
 .loader {
-  /* opacity: 0; */
+  opacity: 0;
   display: flex;
   position: fixed;
   bottom: 50px;
